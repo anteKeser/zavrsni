@@ -1,0 +1,119 @@
+{
+  "project_info": {
+    "project_number": "676023727413",
+    "firebase_url": "https://zavrsni-3f1ea-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "zavrsni-3f1ea",
+    "storage_bucket": "zavrsni-3f1ea.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:676023727413:android:be3f07307ddcefcd4e487c",
+        "android_client_info": {
+          "package_name": "com.example.zavrsni"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "676023727413-d983lbu7hbio47tla8ri557jit7rtafe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtVCLUt1G3VEFveZNNztK5mwIKuOnpqFg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "676023727413-d983lbu7hbio47tla8ri557jit7rtafe.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "676023727413-22ov51a0fmkjoemmcb9efm1a566kckfh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.keser.flameguard"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:676023727413:android:8596d649f8185bc04e487c",
+        "android_client_info": {
+          "package_name": "com.keser.flameguard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "676023727413-d983lbu7hbio47tla8ri557jit7rtafe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtVCLUt1G3VEFveZNNztK5mwIKuOnpqFg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "676023727413-d983lbu7hbio47tla8ri557jit7rtafe.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "676023727413-22ov51a0fmkjoemmcb9efm1a566kckfh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.keser.flameguard"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:676023727413:android:e29d116f6945c1f64e487c",
+        "android_client_info": {
+          "package_name": "com.keser.zavrsni"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "676023727413-d983lbu7hbio47tla8ri557jit7rtafe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtVCLUt1G3VEFveZNNztK5mwIKuOnpqFg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "676023727413-d983lbu7hbio47tla8ri557jit7rtafe.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "676023727413-22ov51a0fmkjoemmcb9efm1a566kckfh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.keser.flameguard"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
