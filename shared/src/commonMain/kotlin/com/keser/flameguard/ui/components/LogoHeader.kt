@@ -21,36 +21,36 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun FireGuardLogoHeader() {
-  Column(
-      horizontalAlignment = Alignment.CenterHorizontally,
-      modifier = Modifier.fillMaxWidth().padding(bottom = 36.dp),
-  ) {
-    val typography = MaterialTheme.typography
-    val colorScheme = MaterialTheme.colorScheme
-    Box(
-        modifier =
-            Modifier.size(72.dp)
-                .clip(CircleShape)
-                .background(colorScheme.primary.copy(alpha = 0.12f))
-                .border(1.dp, colorScheme.primary.copy(alpha = 0.25f), CircleShape),
-        contentAlignment = Alignment.Center,
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxWidth().padding(bottom = 36.dp),
     ) {
-      Text("🔥", fontSize = 32.sp)
+        val typography = MaterialTheme.typography
+        val colorScheme = MaterialTheme.colorScheme
+        Box(
+            modifier =
+                Modifier.size(72.dp)
+                    .clip(CircleShape)
+                    .background(colorScheme.primary.copy(alpha = 0.12f))
+                    .border(1.dp, colorScheme.primary.copy(alpha = 0.25f), CircleShape),
+            contentAlignment = Alignment.Center,
+        ) {
+            Text("🔥", fontSize = 32.sp)
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(
+            text = "FireGuard",
+            style = typography.headlineMedium,
+            color = colorScheme.onBackground,
+        )
+
+        Text(
+            text = "IOT SAFETY SYSTEM",
+            style = typography.labelSmall,
+            color = colorScheme.onBackground.copy(alpha = 0.25f),
+            modifier = Modifier.padding(top = 4.dp),
+        )
     }
-
-    Spacer(modifier = Modifier.height(16.dp))
-
-    Text(
-        text = "FireGuard",
-        style = typography.headlineMedium,
-        color = colorScheme.onBackground,
-    )
-
-    Text(
-        text = "IOT SAFETY SYSTEM",
-        style = typography.labelSmall,
-        color = colorScheme.onBackground.copy(alpha = 0.25f),
-        modifier = Modifier.padding(top = 4.dp),
-    )
-  }
 }

@@ -9,3 +9,6 @@ data class SensorData(
     val timestamp: Instant,
     val isSystemSafe: Boolean,
 )
+
+val SensorData.isDanger: Boolean
+    get() = coLevel > 5.0 || temperature > 40.0

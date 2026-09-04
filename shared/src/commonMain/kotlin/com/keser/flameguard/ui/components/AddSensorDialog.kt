@@ -21,52 +21,56 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun AddSensorDialog(onDismiss: () -> Unit, onAdd: (String, String) -> Unit) {
-  val rooms =
-      listOf(
-          "Kitchen" to "🍳",
-          "Living Room" to "🛋️",
-          "Bedroom" to "🛏️",
-          "Garage" to "🚗",
-          "Basement" to "📦",
-      )
+    val rooms =
+        listOf(
+            "Kitchen" to "🍳",
+            "Living Room" to "🛋️",
+            "Bedroom" to "🛏️",
+            "Garage" to "🚗",
+            "Basement" to "📦",
+        )
 
-  AlertDialog(
-      onDismissRequest = onDismiss,
-      containerColor = MaterialTheme.colorScheme.surface,
-      titleContentColor = MaterialTheme.colorScheme.onBackground,
-      title = { Text("Register New Sensor", fontWeight = FontWeight.Bold) },
-      text = {
-        Column {
-          Text(
-              "Select the installation location for your new FireGuard hardware.",
-              style = MaterialTheme.typography.bodyMedium,
-              color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f),
-              modifier = Modifier.padding(bottom = 16.dp),
-          )
-          rooms.forEach { (roomName, emoji) ->
-            Row(
-                modifier =
-                    Modifier.fillMaxWidth()
-                        .padding(vertical = 4.dp)
-                        .clip(RoundedCornerShape(12.dp))
-                        .background(MaterialTheme.colorScheme.onBackground.copy(alpha = 0.05f))
-                        .clickable {
-                          onAdd(roomName, emoji)
-                          onDismiss()
-                        }
-                        .padding(16.dp),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-              Text(text = emoji, fontSize = 20.sp, modifier = Modifier.padding(end = 12.dp))
-              Text(text = roomName, color = MaterialTheme.colorScheme.onBackground)
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        containerColor = MaterialTheme.colorScheme.surface,
+        titleContentColor = MaterialTheme.colorScheme.onBackground,
+        title = { Text("Register New Sensor", fontWeight = FontWeight.Bold) },
+        text = {
+            Column {
+                Text(
+                    "Select the installation location for your new FireGuard hardware.",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f),
+                    modifier = Modifier.padding(bottom = 16.dp),
+                )
+                rooms.forEach { (roomName, emoji) ->
+                    Row(
+                        modifier =
+                            Modifier.fillMaxWidth()
+                                .padding(vertical = 4.dp)
+                                .clip(RoundedCornerShape(12.dp))
+                                .background(MaterialTheme.colorScheme.onBackground.copy(alpha = 0.05f))
+                                .clickable {
+                                    onAdd(roomName, emoji)
+                                    onDismiss()
+                                }
+                                .padding(16.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Text(
+                            text = emoji,
+                            fontSize = 20.sp,
+                            modifier = Modifier.padding(end = 12.dp)
+                        )
+                        Text(text = roomName, color = MaterialTheme.colorScheme.onBackground)
+                    }
+                }
             }
-          }
-        }
-      },
-      confirmButton = {
-        TextButton(onClick = onDismiss) {
-          Text("Cancel", color = MaterialTheme.colorScheme.primary)
-        }
-      },
-  )
+        },
+        confirmButton = {
+            TextButton(onClick = onDismiss) {
+                Text("Cancel", color = MaterialTheme.colorScheme.primary)
+            }
+        },
+    )
 }

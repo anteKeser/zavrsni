@@ -190,7 +190,7 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel = koinView
               )
             }
             Text(
-                text = if (state.logsCleared) "0 logs" else "${state.logCount} logs",
+                text = "${state.logCount} logs",
                 style = typography.labelSmall,
                 modifier =
                     Modifier.clip(RoundedCornerShape(8.dp))

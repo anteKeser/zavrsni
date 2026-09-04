@@ -26,33 +26,37 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun OfflineCard() {
-  val typography = MaterialTheme.typography
-  val colorScheme = MaterialTheme.colorScheme
-  val offlineGray = Color(0xFF555577)
+    val typography = MaterialTheme.typography
+    val colorScheme = MaterialTheme.colorScheme
+    val offlineGray = Color(0xFF555577)
 
-  Box(
-      modifier =
-          Modifier.fillMaxWidth()
-              .clip(RoundedCornerShape(20.dp))
-              .background(colorScheme.onBackground.copy(alpha = 0.02f))
-              .border(1.dp, colorScheme.onBackground.copy(alpha = 0.07f), RoundedCornerShape(20.dp))
-              .padding(18.dp)
-  ) {
-    Column {
-      Text("OFFLINE", style = typography.labelSmall, color = offlineGray)
-      Spacer(modifier = Modifier.height(8.dp))
-      Row(verticalAlignment = Alignment.CenterVertically) {
-        Icon(Icons.Default.Build, contentDescription = "Offline", tint = offlineGray)
-        Spacer(modifier = Modifier.width(8.dp))
+    Box(
+        modifier =
+            Modifier.fillMaxWidth()
+                .clip(RoundedCornerShape(20.dp))
+                .background(colorScheme.onBackground.copy(alpha = 0.02f))
+                .border(
+                    1.dp,
+                    colorScheme.onBackground.copy(alpha = 0.07f),
+                    RoundedCornerShape(20.dp)
+                )
+                .padding(18.dp)
+    ) {
         Column {
-          Text(
-              "Basement Sensor",
-              style = typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
-              color = offlineGray,
-          )
-          Text("ID · FG-003", style = typography.labelSmall, color = offlineGray)
+            Text("OFFLINE", style = typography.labelSmall, color = offlineGray)
+            Spacer(modifier = Modifier.height(8.dp))
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(Icons.Default.Build, contentDescription = "Offline", tint = offlineGray)
+                Spacer(modifier = Modifier.width(8.dp))
+                Column {
+                    Text(
+                        "Basement Sensor",
+                        style = typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
+                        color = offlineGray,
+                    )
+                    Text("ID · FG-003", style = typography.labelSmall, color = offlineGray)
+                }
+            }
         }
-      }
     }
-  }
 }

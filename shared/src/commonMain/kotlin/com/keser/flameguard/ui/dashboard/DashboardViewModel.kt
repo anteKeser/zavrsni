@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.keser.flameguard.data.SensorData
 import com.keser.flameguard.data.SensorRepository
+import com.keser.flameguard.data.isDanger
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -14,8 +15,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 data class DashboardState(
-    val smokeLevel: Int = 0,
-    val gasLevel: Int = 0,
+    val smokeLevel: Double = 0.0,
+    val gasLevel: Double = 0.0,
     val activeFilter: String = "1H",
     val isDangerSpike: Boolean = false,
     val isSystemSafe: Boolean = true,
@@ -37,10 +38,10 @@ class DashboardViewModel(private val sensorRepository: SensorRepository) : ViewM
           .onEach { incomingData ->
             _state.update { currentState ->
               currentState.copy(
-                  smokeLevel = incomingData.smokeLevel.toInt(),
-                  gasLevel = incomingData.coLevel.toInt(),
+                  smokeLevel = incomingData.smokeLevel,
+                  gasLevel = incomingData.coLevel,
                   isSystemSafe = incomingData.isSystemSafe,
-                  isDangerSpike = incomingData.coLevel > 5.0 || incomingData.temperature > 40.0,
+                  isDangerSpike = incomingData.isDanger,
               )
             }
           }

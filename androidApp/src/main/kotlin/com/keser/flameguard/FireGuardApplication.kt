@@ -14,6 +14,8 @@ class FireGuardApplication : Application() {
       e.printStackTrace()
     }
 
+    AndroidContextHolder.appContext = this
+
     KoinHelper.initKoin()
   }
 }

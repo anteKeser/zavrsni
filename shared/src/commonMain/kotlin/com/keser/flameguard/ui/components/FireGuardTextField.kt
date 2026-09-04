@@ -39,75 +39,78 @@ fun FireGuardTextField(
     showPassword: Boolean = false,
     onTogglePassword: () -> Unit = {},
 ) {
-  val typography = MaterialTheme.typography
-  val colorScheme = MaterialTheme.colorScheme
-  Column(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)) {
-    Text(
-        text = label,
-        style = typography.labelSmall,
-        color = colorScheme.onBackground.copy(alpha = 0.3f),
-        modifier = Modifier.padding(bottom = 8.dp),
-    )
+    val typography = MaterialTheme.typography
+    val colorScheme = MaterialTheme.colorScheme
+    Column(modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)) {
+        Text(
+            text = label,
+            style = typography.labelSmall,
+            color = colorScheme.onBackground.copy(alpha = 0.3f),
+            modifier = Modifier.padding(bottom = 8.dp),
+        )
 
-    Box(
-        modifier =
-            Modifier.fillMaxWidth()
-                .clip(RoundedCornerShape(12.dp))
-                .background(colorScheme.onBackground.copy(alpha = 0.05f))
-                .border(
-                    1.dp,
-                    colorScheme.primary.copy(alpha = 0.18f),
-                    RoundedCornerShape(12.dp),
-                )
-                .padding(horizontal = 16.dp, vertical = 14.dp),
-        contentAlignment = Alignment.CenterStart,
-    ) {
-      BasicTextField(
-          value = value,
-          onValueChange = onValueChange,
-          textStyle =
-              typography.bodyLarge.copy(
-                  color = colorScheme.onBackground,
-                  fontSize = 14.sp,
-              ),
-          cursorBrush = SolidColor(colorScheme.primary),
-          keyboardOptions =
-              KeyboardOptions(
-                  keyboardType = if (isPassword) KeyboardType.Password else KeyboardType.Email
-              ),
-          visualTransformation =
-              if (isPassword && !showPassword) PasswordVisualTransformation()
-              else VisualTransformation.None,
-          modifier = Modifier.fillMaxWidth(),
-          decorationBox = { innerTextField ->
-            Row(
+        Box(
+            modifier =
+                Modifier.fillMaxWidth()
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(colorScheme.onBackground.copy(alpha = 0.05f))
+                    .border(
+                        1.dp,
+                        colorScheme.primary.copy(alpha = 0.18f),
+                        RoundedCornerShape(12.dp),
+                    )
+                    .padding(horizontal = 16.dp, vertical = 14.dp),
+            contentAlignment = Alignment.CenterStart,
+        ) {
+            BasicTextField(
+                value = value,
+                onValueChange = onValueChange,
+                textStyle =
+                    typography.bodyLarge.copy(
+                        color = colorScheme.onBackground,
+                        fontSize = 14.sp,
+                    ),
+                cursorBrush = SolidColor(colorScheme.primary),
+                keyboardOptions =
+                    KeyboardOptions(
+                        keyboardType = if (isPassword) KeyboardType.Password else KeyboardType.Email
+                    ),
+                visualTransformation =
+                    if (isPassword && !showPassword) PasswordVisualTransformation()
+                    else VisualTransformation.None,
                 modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween,
-            ) {
-              Box(modifier = Modifier.weight(1f)) {
-                if (value.isEmpty()) {
-                  Text(
-                      text = placeholder,
-                      style = typography.bodyLarge,
-                      color = colorScheme.onBackground.copy(alpha = 0.28f),
-                      fontSize = 13.sp,
-                  )
-                }
-                innerTextField()
-              }
-              if (isPassword) {
-                IconButton(onClick = onTogglePassword, modifier = Modifier.size(20.dp)) {
-                  Icon(
-                      imageVector = Icons.Default.Lock,
-                      contentDescription = "Toggle Password",
-                      tint = colorScheme.onBackground.copy(alpha = 0.3f),
-                  )
-                }
-              }
-            }
-          },
-      )
+                decorationBox = { innerTextField ->
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                    ) {
+                        Box(modifier = Modifier.weight(1f)) {
+                            if (value.isEmpty()) {
+                                Text(
+                                    text = placeholder,
+                                    style = typography.bodyLarge,
+                                    color = colorScheme.onBackground.copy(alpha = 0.28f),
+                                    fontSize = 13.sp,
+                                )
+                            }
+                            innerTextField()
+                        }
+                        if (isPassword) {
+                            IconButton(
+                                onClick = onTogglePassword,
+                                modifier = Modifier.size(20.dp)
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Lock,
+                                    contentDescription = "Toggle Password",
+                                    tint = colorScheme.onBackground.copy(alpha = 0.3f),
+                                )
+                            }
+                        }
+                    }
+                },
+            )
+        }
     }
-  }
 }

@@ -28,34 +28,37 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun SafeCard(onClick: () -> Unit) {
 
-  val typography = MaterialTheme.typography
-  val colorScheme = MaterialTheme.colorScheme
-  val safeGreen = Color(0xFF22C55E)
+    val typography = MaterialTheme.typography
+    val colorScheme = MaterialTheme.colorScheme
+    val safeGreen = Color(0xFF22C55E)
 
-  Box(
-      modifier =
-          Modifier.fillMaxWidth()
-              .clip(RoundedCornerShape(20.dp))
-              .background(colorScheme.onBackground.copy(alpha = 0.04f))
-              .border(1.dp, safeGreen.copy(alpha = 0.18f), RoundedCornerShape(20.dp))
-              .clickable { onClick() }
-              .padding(18.dp)
-  ) {
-    Column {
-      Text("SAFE", style = typography.labelSmall, color = safeGreen)
-      Spacer(modifier = Modifier.height(8.dp))
-      Row(verticalAlignment = Alignment.CenterVertically) {
-        Icon(Icons.Default.CheckCircle, contentDescription = "Safe", tint = safeGreen)
-        Spacer(modifier = Modifier.width(8.dp))
+    Box(
+        modifier =
+            Modifier.fillMaxWidth()
+                .clip(RoundedCornerShape(20.dp))
+                .background(colorScheme.onBackground.copy(alpha = 0.04f))
+                .border(1.dp, safeGreen.copy(alpha = 0.18f), RoundedCornerShape(20.dp))
+                .clickable { onClick() }
+                .padding(18.dp)
+    ) {
         Column {
-          Text("Kitchen Sensor", style = typography.bodyLarge.copy(fontWeight = FontWeight.Bold))
-          Text(
-              "ID · FG-001",
-              style = typography.labelSmall,
-              color = colorScheme.onBackground.copy(alpha = 0.4f),
-          )
+            Text("SAFE", style = typography.labelSmall, color = safeGreen)
+            Spacer(modifier = Modifier.height(8.dp))
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(Icons.Default.CheckCircle, contentDescription = "Safe", tint = safeGreen)
+                Spacer(modifier = Modifier.width(8.dp))
+                Column {
+                    Text(
+                        "Kitchen Sensor",
+                        style = typography.bodyLarge.copy(fontWeight = FontWeight.Bold)
+                    )
+                    Text(
+                        "ID · FG-001",
+                        style = typography.labelSmall,
+                        color = colorScheme.onBackground.copy(alpha = 0.4f),
+                    )
+                }
+            }
         }
-      }
     }
-  }
 }

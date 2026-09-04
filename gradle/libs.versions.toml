@@ -6,11 +6,8 @@ android-targetSdk = "36"
 androidx-activity = "1.13.0"
 androidx-appcompat = "1.7.1"
 androidx-core = "1.18.0"
-androidx-espresso = "3.7.0"
 androidx-lifecycle = "2.11.0-beta01"
-androidx-testExt = "1.3.0"
 composeMultiplatform = "1.11.0"
-junit = "4.13.2"
 kotlin = "2.3.21"
 material3 = "1.11.0-alpha07"
 koin = "4.2.1"
@@ -18,16 +15,12 @@ kotlinx-datetime = "0.8.0"
 kmp-navigation = "2.9.2"
 google-services = "4.4.1"
 gitlive-firebase = "2.4.0"
+multiplatformSettings = "1.3.0"
 firebase-common = "21.0.0"
 
 [libraries]
 
-kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
-kotlin-testJunit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
-junit = { module = "junit:junit", version.ref = "junit" }
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
-androidx-testExt-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-testExt" }
-androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidx-espresso" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 compose-uiTooling = { module = "org.jetbrains.compose.ui:ui-tooling", version.ref = "composeMultiplatform" }
@@ -50,6 +43,7 @@ kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.
 firebase-common = { module = "com.google.firebase:firebase-common", version.ref = "firebase-common" }
 firebase-auth = { module = "dev.gitlive:firebase-auth", version.ref = "gitlive-firebase" }
 firebase-database = { module = "dev.gitlive:firebase-database", version.ref = "gitlive-firebase" }
+multiplatform-settings = { module = "com.russhwolf:multiplatform-settings", version.ref = "multiplatformSettings" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

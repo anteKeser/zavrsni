@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.keser.flameguard.data.AuthRepository
 import com.keser.flameguard.data.SensorRepository
-import kotlinx.coroutines.delay
+import com.keser.flameguard.data.isDanger
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -22,7 +22,7 @@ data class SensorDevice(
 data class HomeState(
     val userName: String = "User",
     val activeWarnings: Int = 0,
-    val logCount: Int = 142,
+    val logCount: Int = 0,
     val isClearingLogs: Boolean = false,
     val logsCleared: Boolean = false,
     val isSystemSafe: Boolean = true,
@@ -35,52 +35,62 @@ class HomeViewModel(
     private val sensorRepository: SensorRepository,
 ) : ViewModel() {
 
-  private val _state = MutableStateFlow(HomeState())
-  val state: StateFlow<HomeState> = _state.asStateFlow()
+    private val _state = MutableStateFlow(HomeState())
+    val state: StateFlow<HomeState> = _state.asStateFlow()
 
-  init {
-    val email = authRepository.currentUser?.email ?: "User"
-    val name = email.substringBefore("@").replaceFirstChar { it.uppercase() }
-    _state.update { it.copy(userName = name) }
+    init {
+        val email = authRepository.currentUser?.email ?: "User"
+        val name = email.substringBefore("@").replaceFirstChar { it.uppercase() }
+        _state.update { it.copy(userName = name) }
 
-    viewModelScope.launch {
-      sensorRepository.streamSensorData().collect { incomingData ->
-        _state.update { currentState ->
-          val isDanger = incomingData.coLevel > 5.0 || incomingData.temperature > 40.0
-          currentState.copy(
-              activeWarnings = if (isDanger) 1 else 0,
-              isSystemSafe = !isDanger,
-              logCount = if (currentState.logsCleared) 1 else currentState.logCount + 1,
-              logsCleared = false,
-          )
+        viewModelScope.launch {
+            sensorRepository.streamSensorData().collect { incomingData ->
+                _state.update { currentState ->
+                    val isDanger = incomingData.isDanger
+                    currentState.copy(
+                        activeWarnings = if (isDanger) 1 else 0,
+                        isSystemSafe = !isDanger
+                    )
+                }
+            }
         }
-      }
+
+        viewModelScope.launch {
+            val count = sensorRepository.getLogCount()
+            _state.update { it.copy(logCount = count) }
+        }
     }
-  }
 
-  fun addDevice(roomName: String, emoji: String) {
-    val currentDevices = _state.value.devices
-    if (currentDevices.size >= 5) return
+    fun addDevice(roomName: String, emoji: String) {
+        val currentDevices = _state.value.devices
+        if (currentDevices.size >= 5) return
 
-    val newId = "FG-00${(2..9).random()}"
-    val newDevice =
-        SensorDevice(id = newId, name = "$roomName Sensor", roomEmoji = emoji, isOnline = false)
+        val newId = "FG-00${(2..9).random()}"
+        val newDevice =
+            SensorDevice(id = newId, name = "$roomName Sensor", roomEmoji = emoji, isOnline = false)
 
-    _state.update { it.copy(devices = currentDevices + newDevice) }
-  }
-
-  fun removeDevice(deviceId: String) {
-    _state.update { currentState ->
-      currentState.copy(devices = currentState.devices.filter { it.id != deviceId })
+        _state.update { it.copy(devices = currentDevices + newDevice) }
     }
-  }
 
-  fun clearOldLogs() {
-    if (_state.value.isClearingLogs) return
-    viewModelScope.launch {
-      _state.update { it.copy(isClearingLogs = true) }
-      delay(1400)
-      _state.update { it.copy(isClearingLogs = false, logsCleared = true, logCount = 0) }
+    fun removeDevice(deviceId: String) {
+        _state.update { currentState ->
+            currentState.copy(devices = currentState.devices.filter { it.id != deviceId })
+        }
     }
-  }
+
+    fun clearOldLogs() {
+        if (_state.value.isClearingLogs) return
+        viewModelScope.launch {
+            _state.update { it.copy(isClearingLogs = true) }
+            sensorRepository.clearOldLogs(olderThanDays = 30)
+            val remaining = sensorRepository.getLogCount()
+            _state.update {
+                it.copy(
+                    isClearingLogs = false,
+                    logsCleared = true,
+                    logCount = remaining
+                )
+            }
+        }
+    }
 }

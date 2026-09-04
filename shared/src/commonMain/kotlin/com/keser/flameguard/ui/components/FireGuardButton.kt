@@ -19,26 +19,26 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun FireGuardButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
-  val typography = MaterialTheme.typography
-  val colorScheme = MaterialTheme.colorScheme
-  val gradient = Brush.linearGradient(colors = listOf(colorScheme.primary, colorScheme.secondary))
+    val typography = MaterialTheme.typography
+    val colorScheme = MaterialTheme.colorScheme
+    val gradient = Brush.linearGradient(colors = listOf(colorScheme.primary, colorScheme.secondary))
 
-  Box(
-      modifier =
-          modifier
-              .fillMaxWidth()
-              .clip(RoundedCornerShape(14.dp))
-              .background(gradient)
-              .clickable { onClick() }
-              .padding(vertical = 16.dp),
-      contentAlignment = Alignment.Center,
-  ) {
-    Text(
-        text = text,
-        style = typography.bodyLarge,
-        color = colorScheme.onPrimary,
-        fontWeight = FontWeight.Bold,
-        letterSpacing = 0.3.sp,
-    )
-  }
+    Box(
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(14.dp))
+                .background(gradient)
+                .clickable { onClick() }
+                .padding(vertical = 16.dp),
+        contentAlignment = Alignment.Center,
+    ) {
+        Text(
+            text = text,
+            style = typography.bodyLarge,
+            color = colorScheme.onPrimary,
+            fontWeight = FontWeight.Bold,
+            letterSpacing = 0.3.sp,
+        )
+    }
 }

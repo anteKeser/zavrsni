@@ -20,3 +20,12 @@ val TextMuted = Color(0x40FFFFFF)
 // Status Colors
 val StatusDanger = Color(0xFFEF4444)
 val StatusSafe = Color(0xFF22C55E)
+
+// Light Backgrounds
+val BgLightBase = Color(0xFFFBF8F5)
+val CardBgLight = Color(0xE6FFFFFF)
+
+// Light Text Colors
+val TextPrimaryLight = Color(0xFF1A1207)
+val TextSecondaryLight = Color(0x611A1207)
+val TextMutedLight = Color(0x401A1207)

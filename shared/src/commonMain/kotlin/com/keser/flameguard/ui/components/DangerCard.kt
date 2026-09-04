@@ -33,45 +33,52 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun DangerCard(onClick: () -> Unit) {
-  val typography = MaterialTheme.typography
-  val colorScheme = MaterialTheme.colorScheme
+    val typography = MaterialTheme.typography
+    val colorScheme = MaterialTheme.colorScheme
 
-  val infiniteTransition = rememberInfiniteTransition()
-  val pulseAlpha by
-      infiniteTransition.animateFloat(
-          initialValue = 0.12f,
-          targetValue = 0.22f,
-          animationSpec =
-              infiniteRepeatable(
-                  animation = tween(1100, easing = LinearEasing),
-                  repeatMode = RepeatMode.Reverse,
-              ),
-      )
+    val infiniteTransition = rememberInfiniteTransition()
+    val pulseAlpha by
+    infiniteTransition.animateFloat(
+        initialValue = 0.12f,
+        targetValue = 0.22f,
+        animationSpec =
+            infiniteRepeatable(
+                animation = tween(1100, easing = LinearEasing),
+                repeatMode = RepeatMode.Reverse,
+            ),
+    )
 
-  Box(
-      modifier =
-          Modifier.fillMaxWidth()
-              .clip(RoundedCornerShape(20.dp))
-              .background(colorScheme.error.copy(alpha = pulseAlpha))
-              .border(1.dp, colorScheme.error.copy(alpha = 0.5f), RoundedCornerShape(20.dp))
-              .clickable { onClick() }
-              .padding(18.dp)
-  ) {
-    Column {
-      Text("WARNING", style = typography.labelSmall, color = colorScheme.error)
-      Spacer(modifier = Modifier.height(8.dp))
-      Row(verticalAlignment = Alignment.CenterVertically) {
-        Icon(Icons.Default.Warning, contentDescription = "Warning", tint = colorScheme.error)
-        Spacer(modifier = Modifier.width(8.dp))
+    Box(
+        modifier =
+            Modifier.fillMaxWidth()
+                .clip(RoundedCornerShape(20.dp))
+                .background(colorScheme.error.copy(alpha = pulseAlpha))
+                .border(1.dp, colorScheme.error.copy(alpha = 0.5f), RoundedCornerShape(20.dp))
+                .clickable { onClick() }
+                .padding(18.dp)
+    ) {
         Column {
-          Text("Garage Sensor", style = typography.bodyLarge.copy(fontWeight = FontWeight.Bold))
-          Text(
-              "ID · FG-002",
-              style = typography.labelSmall,
-              color = colorScheme.onBackground.copy(alpha = 0.4f),
-          )
+            Text("WARNING", style = typography.labelSmall, color = colorScheme.error)
+            Spacer(modifier = Modifier.height(8.dp))
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(
+                    Icons.Default.Warning,
+                    contentDescription = "Warning",
+                    tint = colorScheme.error
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Column {
+                    Text(
+                        "Garage Sensor",
+                        style = typography.bodyLarge.copy(fontWeight = FontWeight.Bold)
+                    )
+                    Text(
+                        "ID · FG-002",
+                        style = typography.labelSmall,
+                        color = colorScheme.onBackground.copy(alpha = 0.4f),
+                    )
+                }
+            }
         }
-      }
     }
-  }
 }

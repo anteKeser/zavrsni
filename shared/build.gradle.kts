@@ -38,6 +38,7 @@ kotlin {
     sourceSets {
         androidMain.dependencies {
             implementation(libs.compose.uiToolingPreview)
+            implementation(libs.androidx.core.ktx)
         }
         commonMain.dependencies {
             implementation(libs.compose.runtime)
@@ -57,9 +58,7 @@ kotlin {
             implementation(project.dependencies.platform("com.google.firebase:firebase-bom:33.1.0"))
             implementation(libs.firebase.auth)
             implementation(libs.firebase.database)
-        }
-        commonTest.dependencies {
-            implementation(libs.kotlin.test)
+            implementation(libs.multiplatform.settings)
         }
     }
 }

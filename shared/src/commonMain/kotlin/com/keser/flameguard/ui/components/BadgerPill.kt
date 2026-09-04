@@ -21,34 +21,38 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun BadgePill(text: String, isDanger: Boolean) {
-  val typography = MaterialTheme.typography
-  val colorScheme = MaterialTheme.colorScheme
-  val bgColor =
-      if (isDanger) colorScheme.error.copy(alpha = 0.1f)
-      else colorScheme.onBackground.copy(alpha = 0.04f)
-  val borderColor =
-      if (isDanger) colorScheme.error.copy(alpha = 0.28f)
-      else colorScheme.onBackground.copy(alpha = 0.08f)
-  val textColor = if (isDanger) colorScheme.error else colorScheme.onBackground.copy(alpha = 0.6f)
+    val typography = MaterialTheme.typography
+    val colorScheme = MaterialTheme.colorScheme
+    val bgColor =
+        if (isDanger) colorScheme.error.copy(alpha = 0.1f)
+        else colorScheme.onBackground.copy(alpha = 0.04f)
+    val borderColor =
+        if (isDanger) colorScheme.error.copy(alpha = 0.28f)
+        else colorScheme.onBackground.copy(alpha = 0.08f)
+    val textColor = if (isDanger) colorScheme.error else colorScheme.onBackground.copy(alpha = 0.6f)
 
-  Row(
-      modifier =
-          Modifier.clip(RoundedCornerShape(50))
-              .background(bgColor)
-              .border(1.dp, borderColor, RoundedCornerShape(50))
-              .padding(horizontal = 12.dp, vertical = 5.dp),
-      verticalAlignment = Alignment.CenterVertically,
-  ) {
-    if (isDanger) {
-      Box(
-          modifier =
-              Modifier.size(6.dp)
-                  .clip(CircleShape)
-                  .background(colorScheme.error)
-                  .padding(end = 6.dp)
-      )
-      Spacer(modifier = Modifier.width(6.dp))
+    Row(
+        modifier =
+            Modifier.clip(RoundedCornerShape(50))
+                .background(bgColor)
+                .border(1.dp, borderColor, RoundedCornerShape(50))
+                .padding(horizontal = 12.dp, vertical = 5.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        if (isDanger) {
+            Box(
+                modifier =
+                    Modifier.size(6.dp)
+                        .clip(CircleShape)
+                        .background(colorScheme.error)
+                        .padding(end = 6.dp)
+            )
+            Spacer(modifier = Modifier.width(6.dp))
+        }
+        Text(
+            text,
+            style = typography.labelSmall.copy(fontWeight = FontWeight.Bold),
+            color = textColor
+        )
     }
-    Text(text, style = typography.labelSmall.copy(fontWeight = FontWeight.Bold), color = textColor)
-  }
 }

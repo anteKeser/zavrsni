@@ -10,29 +10,31 @@ import kotlinx.coroutines.launch
 
 class LoginViewModel(private val authRepository: AuthRepository) : ViewModel() {
 
-  private val _loginState = MutableStateFlow<LoginState>(LoginState.Idle)
-  val loginState: StateFlow<LoginState> = _loginState.asStateFlow()
+    private val _loginState = MutableStateFlow<LoginState>(LoginState.Idle)
+    val loginState: StateFlow<LoginState> = _loginState.asStateFlow()
 
-  fun performLogin(email: String, password: String, onSuccess: () -> Unit) {
-    viewModelScope.launch {
-      _loginState.value = LoginState.Loading
+    fun performLogin(email: String, password: String, onSuccess: () -> Unit) {
+        viewModelScope.launch {
+            _loginState.value = LoginState.Loading
 
-      authRepository
-          .login(email, password)
-          .fold(
-              onSuccess = {
-                _loginState.value = LoginState.Idle
-                onSuccess()
-              },
-              onFailure = { e ->
-                _loginState.value =
-                    LoginState.Error(e.message ?: "Authentication failed. Please try again.")
-              },
-          )
+            authRepository
+                .login(email, password)
+                .fold(
+                    onSuccess = {
+                        _loginState.value = LoginState.Idle
+                        onSuccess()
+                    },
+                    onFailure = { e ->
+                        _loginState.value =
+                            LoginState.Error(
+                                e.message ?: "Authentication failed. Please try again."
+                            )
+                    },
+                )
+        }
     }
-  }
 
-  fun clearError() {
-    _loginState.value = LoginState.Idle
-  }
+    fun clearError() {
+        _loginState.value = LoginState.Idle
+    }
 }
